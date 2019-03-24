@@ -1,8 +1,10 @@
 from flask import (
     Blueprint,
     Flask,
-    jsonify
+    Response
 )
+
+APPLICATION_JSON = 'application/json'
 
 app = Flask(
     __name__,
@@ -15,9 +17,14 @@ def index():
 
 api = Blueprint('api', __name__, url_prefix='/api')
 
-@api.route('/tags')
-def tags():
-    tags = ['a', 'b']
-    return jsonify(tags)
+@api.route('/categories')
+def get_categories():
+    with open('scrape-stuff/categories.json') as f:
+        return Response(f.read(), mimetype = APPLICATION_JSON)
+
+@api.route('/clubs')
+def get_clubs():
+    with open('scrape-stuff/club-data.json') as f:
+        return Response(f.read(), mimetype = APPLICATION_JSON)
 
 app.register_blueprint(api)

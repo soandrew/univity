@@ -1,12 +1,46 @@
+const RAINBOW = [
+  "red",
+  "pink",
+  "purple",
+  "deep-purple",
+  "indigo",
+  "blue",
+  "light-blue",
+  "cyan",
+  "teal",
+  "green",
+  "light-green",
+  "lime",
+  "yellow",
+  "amber",
+  "orange",
+  "deep-orange"
+]
+
 class App extends React.Component {
   render() {
     return (
-      <ReactBootstrap.Jumbotron>
-        <h1>Welcome to Univity!</h1>
-        <CategoryList />
-      </ReactBootstrap.Jumbotron>
+      <Masthead />
     );
   }
+}
+
+function Masthead() {
+  return (
+    <header class="masthead vh-100">
+      <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center text-center">
+          <div class="col-12 align-self-end">
+            <h1>Univity</h1>
+            <p class="lead">Get involved with causes that matter to you</p>
+          </div>
+          <div class="col-12 align-self-start">
+            <CategoryList />
+          </div>
+        </div>
+      </div>
+    </header>
+  )
 }
 
 class CategoryList extends React.Component {
@@ -29,10 +63,11 @@ class CategoryList extends React.Component {
 
   render() {
     return (
-      <ul>
-        {this.state.categories.map(category => (
-          <li key={category}>
-            {category}
+      <ul class="categories__list">
+        {this.state.categories.map((category, i) => (
+          <li key={category}
+              class={`categories__list__item categories__list__item--${RAINBOW[i % RAINBOW.length]}`}>
+            <a href="#" class="categories__list__item__link">{category}</a>
           </li>
         ))}
       </ul>

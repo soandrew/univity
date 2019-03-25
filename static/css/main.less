@@ -1,0 +1,80 @@
+@rainbow: {
+  red: white;
+  pink: white;
+  purple: white;
+  deep-purple: white;
+  indigo: white;
+  blue: black;
+  light-blue: black;
+  cyan: black;
+  teal: white;
+  green: black;
+  light-green: black;
+  lime: black;
+  yellow: black;
+  amber: black;
+  orange: black;
+  deep-orange: black;
+}
+
+:root {
+  --md-red: #f44336;
+  --md-pink: #e91e63;
+  --md-purple: #9c27b0;
+  --md-deep-purple: #673ab7;
+  --md-indigo: #3f51b5;
+  --md-blue: #2196f3;
+  --md-light-blue: #03a9f4;
+  --md-cyan: #00bcd4;
+  --md-teal: #009688;
+  --md-green: #4caf50;
+  --md-light-green: #8bc34a;
+  --md-lime: #cddc39;
+  --md-yellow: #ffeb3b;
+  --md-amber: #ffc107;
+  --md-orange: #ff9800;
+  --md-deep-orange: #ff5722;
+  --md-brown: #795548;
+  --md-gray: #9e9e9e;
+  --md-blue-gray: #607d8b;
+  --md-black: #212529;
+  --md-white: #fff;
+}
+
+.masthead {
+  height: 100vh;
+}
+
+.categories__list {
+  margin-top: .5rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.categories__list__item {
+  display: inline-block;
+  margin-bottom: .5rem;
+  border-radius: 2rem;
+
+  &:not(:last-child) {
+    margin-right: .5rem;
+  }
+
+  each(@rainbow, {
+    &--@{key} {
+      background-color: var(e('--md-@{key}'));
+      color: var(e('--md-@{value}'));
+    }
+  })
+}
+
+.categories__list__item__link {
+  display: block;
+  padding: .75rem 1.25rem;
+  color: inherit;
+
+  &:hover {
+    color: inherit;
+    text-decoration: none;
+  }
+}
